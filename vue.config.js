@@ -43,5 +43,6 @@ module.exports = {
           '@import "@/assets/scss/_var.scss";@import "@/assets/scss/_mixin.scss";'
       }
     }
-  }
+  },
+  devtool:'source-map'
 };

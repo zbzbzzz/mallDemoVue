@@ -14,27 +14,18 @@
         {{brand.desc}}
       </div>
     </div>
+    <!-- 分类树列表 -->
 <van-tree-select
   height="100%"
   :items="items"
   :main-active-index.sync="activeIndex"
 >
   <template slot="content">
-    <van-row gutter v-if="activeIndex === 0">
+    <van-row gutter v-for="(item,index) in items" 
+    :key=index
+    v-if="activeIndex === index">
       <van-col span="12"
-               v-for="(goods ,index) in brandGoods"
-               :key="index">
-        <router-link :to="{ path: `/items/detail/${goods.id}`}">
-          <img :src="goods.picUrl"
-               style="width:150px;height:150px;">
-        </router-link>
-        <div style="margin-left: 20px; rgb(123, 116, 116);">{{goods.name}}</div>
-        <div style="margin-left: 20px; color:#ab956d">￥ {{goods.retailPrice}}</div>
-      </van-col>
-    </van-row>
-    <van-row gutter v-if="activeIndex === 1">
-      <van-col span="12"
-               v-for="(goods ,index) in brandGoods"
+               v-for="(goods ,index) in brandGoods[item.text]"
                :key="index">
         <router-link :to="{ path: `/items/detail/${goods.id}`}">
           <img :src="goods.picUrl"
@@ -96,7 +87,10 @@ export default {
       goodsList({
         brandId: this.brandId
       }).then(res => {
-        this.brandGoods = res.data.data.list;
+        // 改为分类商品数据原来为this.brandGoods = res.data.data.list;
+        this.brandGoods = res.data.data.categroyList;
+        // 处理分类模块适应items的格式
+        this.items=res.data.data.filterCategoryList.map((item)=>{return {text:item.name}});
       });
     },
     itemClick(id) {

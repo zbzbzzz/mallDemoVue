@@ -31,9 +31,10 @@
     </van-grid>
 
     <van-tabs sticky animated>
+  <!-- 推荐分类 -->
   <van-tab title="推荐">
      <van-card
-        v-for="(brand ,index) in shopInfos.brandList"
+        v-for="(brand ,index) in shopInfos.VarybrandList.recommend"
         :thumb-link="goBrand(brand.id)"
         :key="index"
         :title="brand.name"
@@ -41,23 +42,28 @@
         @click.native="goto(brand.id)"
       >
        <div slot="tags">
-    <van-tag round type="warning">{{ brand.desc }}</van-tag>
+    <van-tag round type="warning" v-for="(tag,index) in brand.tags"
+    :key="index"
+    >
+    {{ tag }}
+    </van-tag>
   </div>
   <div slot="num">
     43分钟 {{ getRate(brand.floorPrice)-0.5 }}km
   </div>
   <div slot="desc">
    <van-icon name="shoucang" color="#99FF33" size="16"/>
-   {{ getRate(brand.floorPrice) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ getDang(brand.floorPrice) }}单
+   {{ brand.star }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ brand.sale }}单
   <div>
-    ￥{{ brand.floorPrice }} 起送 | 配送费 ￥0
+    ￥{{ brand.startPrice }} 起送 | 配送费 ￥{{ brand.sendPrice }}
   </div>
   </div>
       </van-card>
   </van-tab>
+  <!-- 销量分类 -->
   <van-tab title="销量">
    <van-card
-        v-for="(brand ,index) in shopInfos.brandList"
+        v-for="(brand ,index) in shopInfos.VarybrandList.sale"
         :thumb-link="goBrand(brand.id)"
         :key="index"
         :title="brand.name"
@@ -65,23 +71,28 @@
         @click.native="goto(brand.id)"
       >
        <div slot="tags">
-    <van-tag round type="warning">{{ brand.desc }}</van-tag>
+    <van-tag round type="warning" v-for="(tag,index) in brand.tags"
+    :key="index"
+    >
+    {{ tag }}
+    </van-tag>
   </div>
   <div slot="num">
     43分钟 {{ getRate(brand.floorPrice)-0.5 }}km
   </div>
   <div slot="desc">
    <van-icon name="shoucang" color="#99FF33" size="16"/>
-   {{ getRate(brand.floorPrice) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ getDang(brand.floorPrice) }}单
+   {{ brand.star }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ brand.sale }}单
   <div>
-    ￥{{ brand.floorPrice }} 起送 | 配送费 ￥0
+    ￥{{ brand.startPrice }} 起送 | 配送费 ￥{{ brand.sendPrice }}
   </div>
   </div>
       </van-card>
   </van-tab>
+  <!-- 评分分类 -->
   <van-tab title="评分">
     <van-card
-        v-for="(brand ,index) in shopInfos.brandList"
+        v-for="(brand ,index) in shopInfos.VarybrandList.rate"
         :thumb-link="goBrand(brand.id)"
         :key="index"
         :title="brand.name"
@@ -89,16 +100,20 @@
         @click.native="goto(brand.id)"
       >
        <div slot="tags">
-    <van-tag round type="warning">{{ brand.desc }}</van-tag>
+    <van-tag round type="warning" v-for="(tag,index) in brand.tags"
+    :key="index"
+    >
+    {{ tag }}
+    </van-tag>
   </div>
   <div slot="num">
     43分钟 {{ getRate(brand.floorPrice)-0.5 }}km
   </div>
   <div slot="desc">
    <van-icon name="shoucang" color="#99FF33" size="16"/>
-   {{ getRate(brand.floorPrice) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ getDang(brand.floorPrice) }}单
+   {{ brand.star }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月售{{ brand.sale }}单
   <div>
-    ￥{{ brand.floorPrice }} 起送 | 配送费 ￥0
+    ￥{{ brand.startPrice }} 起送 | 配送费 ￥{{ brand.sendPrice }}
   </div>
   </div>
       </van-card>
