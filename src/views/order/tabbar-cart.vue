@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     submitBarText() {
-      return this.isEditor ? '删除' : '下单';
+      return this.isEditor ? '删除' : '结算';
     },
     totalPrice() {
       return this.goods.reduce(
