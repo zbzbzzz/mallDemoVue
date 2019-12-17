@@ -136,7 +136,8 @@ export default {
         });
       }).catch(error => {
         this.isDisabled = false;
-        this.$toast("下单失败");
+        // 弹出错误信息
+        this.$toast(error.errmsg);
       })
 
     },

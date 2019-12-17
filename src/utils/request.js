@@ -36,7 +36,8 @@ service.interceptors.response.use(
       return Promise.reject('error')
     } if (res.errno === 401) {
       Toast.fail('参数不对');
-      return Promise.reject('error')
+      // 返回参数改为数据本身
+      return Promise.reject(res)
     } if (res.errno === 402) {
       Toast.fail('参数值不对');
       return Promise.reject('error')

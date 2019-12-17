@@ -139,7 +139,12 @@ export default {
       });
       return productId;
     },
-    cartSubmit(){},
+    cartSubmit(){
+      //还没想好怎么处理先暂时指向购物车页面
+      this.$router.push({
+        name: 'cart'
+      });
+    },
     addCart(data) {
       let that = this;
       let params = {

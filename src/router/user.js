@@ -93,7 +93,10 @@ export default [
     path: '/user/order/list/:active',
     name: 'user-order-list',
     props: true,
-    component: UserOrderList
+    components: {
+      default:UserOrderList,
+      tabbar: Tabbar
+      }
   },
   //新增订单路由
   {
