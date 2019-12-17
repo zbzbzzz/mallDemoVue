@@ -95,6 +95,16 @@ export default [
     props: true,
     component: UserOrderList
   },
+  //新增订单路由
+  {
+    path: '/orders',
+    name: 'user-order-list',
+    props: true,
+    components: {
+      default:UserOrderList,
+      tabbar: Tabbar
+      }
+  },
   {
     path: '/user/coupon/list/:active',
     name: 'user-coupon-list',

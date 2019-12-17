@@ -30,10 +30,10 @@ export default {
           info: ''
         },     
         {
-          name: '购物车',
-          path: '/order',
-          pathName: 'cart',
-          icon: 'cart',
+          name: '订单',
+          path: '/orders',
+          pathName: 'orders',
+          icon: 'bill',
           dot: false,
           info: ''
         },
