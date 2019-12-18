@@ -36,9 +36,21 @@
       :hide-stock="true"
       :goods="skuGoods"
       :goodsId="goods.info.id"
-      @buy-clicked="buyGoods"
-      @add-cart="addCart"
-    />
+      @buy-clicked="addCart"
+    >
+    <template slot="sku-actions" slot-scope="props">
+    <div class="van-sku-actions">
+      <van-button
+        square
+        size="large"
+        type="info"
+        @click="props.skuEventBus.$emit('sku:buy')"
+      >
+        加入购物车
+      </van-button>
+    </div>
+  </template>
+    </van-sku>
     <van-action-sheet v-model="propsPopup" close-on-click-overlay>
   <popup-props :propsStr="props_str"></popup-props>
 </van-action-sheet>
@@ -54,7 +66,8 @@
 
     <van-goods-action>
       <van-goods-action-icon @click="toCart" icon="cart-o" :info="(cartInfo > 0) ? cartInfo : ''"/>
-      <van-goods-action-icon @click="addCollect" icon="star-o" :style="(goods.userHasCollect !== 0) ? 'color: #f7b444;':''"/>
+        <!-- 这里无法改变icon的颜色-->
+      <van-goods-action-icon @click="addCollect" icon="fire-o" :style="(goods.userHasCollect !== 0) ? 'color: #f7b444;':''"/>
       <van-goods-action-button  type="warning" color="#7232dd" @click="skuClick" text="加入购物车"/>
       
     </van-goods-action>
@@ -147,6 +160,10 @@ export default {
       collectAddOrDelete({ valueId: this.itemId, type: 0 }).then(res => {
         if (this.goods.userHasCollect === 1) {
           this.goods.userHasCollect = 0;
+           this.$toast({
+            message: '已取消收藏',
+            duration: 1500
+          });
         } else {
           this.goods.userHasCollect = 1;
           this.$toast({

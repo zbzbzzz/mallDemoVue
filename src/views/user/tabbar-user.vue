@@ -1,7 +1,8 @@
 <template>
   <div class="tabbar-user">
     <user-header :isLogin="isLogin"/>
-    <order-group/>
+    <!-- 取消user页面的订单入口 -->
+    <!-- <order-group/> -->
     <coupon-group/>
     <user-module/>
   </div>
